@@ -87,7 +87,7 @@ module.exports = class RequireSplitChunkWebpackPlugin {
 
     /** 完成编译后的同步钩子 */
     afterCompilation(compilation: Webpack.compilation.Compilation) {
-        // 优化每个资源时触发
+        // 优化资源时触发
         compilation.hooks.optimizeChunkAssets.tap(this.name, (chunks) => {
             const assets: Assets = compilation.assets;
             const entryFiles = this.getScriptFile(chunks.filter((chunk) => chunk.hasEntryModule()));
@@ -112,9 +112,11 @@ module.exports = class RequireSplitChunkWebpackPlugin {
         if (!this.checkAllow(compiler)) {
             return;
         }
-        
+
+        const { output } = compiler.options;
+
         // 读取编译配置
-        this.publicPath = compiler.options.output?.publicPath || '';
+        this.publicPath = output?.path || output?.publicPath || '';
         // 完成编译时触发
         compiler.hooks.compilation.tap(this.name, this.afterCompilation.bind(this));
     }
