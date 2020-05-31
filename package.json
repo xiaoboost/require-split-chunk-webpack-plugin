@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "watch": "tsc -w -p .",
-    "compile": "tsc -p ."
+    "compile": "tsc --declaration -p ."
   },
   "author": "xiaoboost",
   "license": "MIT",
@@ -21,7 +21,6 @@
     "@types/webpack": "^4.41.14",
     "is-number": "^7.0.0",
     "is-string": "^1.0.5",
-    "source-map": "^0.7.3",
     "typescript": "^3.9.3",
     "webpack": "^4.43.0"
   }

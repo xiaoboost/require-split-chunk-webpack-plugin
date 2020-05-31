@@ -12,12 +12,13 @@ type Assets = Record<string, CachedSource | ConcatSource>;
 /** 替换语句 */
 const replaceStatement = '__webpack_require__.m = modules';
 
-module.exports = class RequireSplitChunkWebpackPlugin {
+export class RequireSplitChunkPlugin {
     /** 名称 */
-    private name = 'require-split-chunk-webpack-plugin';
+    private name = 'require-split-chunk-plugin';
     /** 公共路径 */
     private publicPath = '';
 
+    /** 生成代码 */
     generatedCode(requires: string[]) {
         const requireList = requires.map((item) => {
             return path.join(this.publicPath, item).replace(/[\\/]+/g, '/');
@@ -120,4 +121,4 @@ module.exports = class RequireSplitChunkWebpackPlugin {
         // 完成编译时触发
         compiler.hooks.compilation.tap(this.name, this.afterCompilation.bind(this));
     }
-};
+}
