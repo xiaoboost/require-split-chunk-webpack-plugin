@@ -1,5 +1,6 @@
 const Webpack = require('webpack');
-const Plugin = require('../dist');
+
+const { RequireSplitChunkPlugin } = require('../dist');
 
 const path = require('path');
 
@@ -40,7 +41,7 @@ const baseConfig = {
             hashDigest: 'hex',
             hashDigestLength: 6,
         }),
-        new Plugin(),
+        new RequireSplitChunkPlugin(),
     ],
 };
 

@@ -9,6 +9,7 @@
     "compile": "tsc --declaration -p ."
   },
   "files": ["dist", "package.json", "README.md"],
+  "keywords": ["nodejs", "webpack", "webpack-plugin", "require"],
   "author": "xiaoboost",
   "license": "MIT",
   "repository": {
