@@ -1,12 +1,14 @@
 {
   "name": "require-split-chunk-webpack-plugin",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "require splited chunk code in entry file",
   "main": "./dist/index.js",
+  "types": "./dist/index.js",
   "scripts": {
     "watch": "tsc -w -p .",
     "compile": "tsc --declaration -p ."
   },
+  "files": ["dist", "package.json", "README.md"],
   "author": "xiaoboost",
   "license": "MIT",
   "repository": {

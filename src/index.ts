@@ -117,7 +117,7 @@ export class RequireSplitChunkPlugin {
         const { output } = compiler.options;
 
         // 读取编译配置
-        this.publicPath = output?.path || output?.publicPath || '';
+        this.publicPath = output?.publicPath || output?.path || '';
         // 完成编译时触发
         compiler.hooks.compilation.tap(this.name, this.afterCompilation.bind(this));
     }
