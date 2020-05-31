@@ -1,0 +1,20 @@
+{
+  "name": "plugin-chunk-path",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "tsc -w -p .",
+    "compile": "tsc -p ."
+  },
+  "author": "xiaoboost",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^14.0.6",
+    "@types/webpack": "^4.41.14",
+    "is-number": "^7.0.0",
+    "is-string": "^1.0.5",
+    "typescript": "^3.9.3",
+    "webpack": "^4.43.0"
+  }
+}
