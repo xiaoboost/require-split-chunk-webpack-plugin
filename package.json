@@ -1,8 +1,8 @@
 {
-  "name": "plugin-chunk-path",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "require-split-chunk-webpack-plugin",
+  "version": "0.0.1",
+  "description": "require splited chunk code in entry file",
+  "main": "./dist/index.js",
   "scripts": {
     "watch": "tsc -w -p .",
     "compile": "tsc -p ."

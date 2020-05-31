@@ -9,7 +9,7 @@ type Assets = Record<string, CachedSource | ConcatSource>;
 
 module.exports = class OptimizationPathPlugin {
     /** 名称 */
-    private name = 'optimization-path-plugin';
+    private name = 'require-split-chunk-webpack-plugin';
     /** 公共路径 */
     private publicPath = '';
 
