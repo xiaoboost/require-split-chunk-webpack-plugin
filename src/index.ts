@@ -1,30 +1,81 @@
 import Webpack from 'webpack';
 import path from 'path';
 
-import { ConcatSource, CachedSource } from 'webpack-sources';
+import { ConcatSource, CachedSource, ReplaceSource } from 'webpack-sources';
+
+import * as utils from './utils';
 
 type Chunk = Webpack.compilation.Chunk;
 type Target = Webpack.Configuration['target'];
 type Assets = Record<string, CachedSource | ConcatSource>;
 
-module.exports = class OptimizationPathPlugin {
+/** 替换语句 */
+const replaceStatement = '__webpack_require__.m = modules';
+
+module.exports = class RequireSplitChunkWebpackPlugin {
     /** 名称 */
     private name = 'require-split-chunk-webpack-plugin';
     /** 公共路径 */
     private publicPath = '';
 
+    generatedCode(requires: string[]) {
+        const requireList = requires.map((item) => {
+            return path.join(this.publicPath, item).replace(/[\\/]+/g, '/');
+        });
+        const StatementList = requireList.map((item) => {
+            return `    require(\'${item}\').modules,`;
+        });
+
+        return (
+            '\n// The modules merge function\n' +
+            'function __webpack_modules_merge(modules) {\n' +
+            '    var i = 0, merged = {}, chunkModule;\n\n' +
+            '    for (; i < modules.length; i++) {\n' +
+            '        chunkModule = modules[i];\n\n' +
+            '        if (!chunkModule) {\n' +
+            '            continue;\n' +
+            '        }\n\n' +
+            '        for (var key in chunkModule) {\n' +
+            '            if (chunkModule.hasOwnProperty(key)) {\n' +
+            '                merged[key] = chunkModule[key];' +
+            '            }\n' +
+            '        }\n' +
+            '    }\n\n' +
+            '    return merged;\n' +
+            '}\n\n' +
+            '// expose the modules object (__webpack_modules__)\n' +
+            'modules = __webpack_require__.m = __webpack_modules_merge([\n' +
+            '    modules,\n' +
+            `${StatementList.join('\n')}\n` +
+            ']);\n'
+        );
+    }
+
     /** 更新入口文件 */
     requireChunkInEntry(cached: CachedSource | ConcatSource, requires: string[]): ConcatSource {
-        const content = new ConcatSource(cached);
+        const origin = cached.source();
+        const replacement = new ReplaceSource(cached);
+        const originExposeModuleStatementStart = origin.indexOf(replaceStatement);
 
-        debugger;
-        return content;
-        
-        // new ConcatSource(
-        //     '\/** Sweet Banner **\/',
-        //     '\n\n',
-        //     // nodes.setSourceContent,
-        // );
+        // 未找到，则直接退出
+        if (originExposeModuleStatementStart < 0) {
+            return new ConcatSource(cached);
+        }
+
+        // 模块赋值语句的起点和终点
+        const exposeStart = utils.findNewLineStart(origin, originExposeModuleStatementStart);
+        const exposeEnd = utils.findNewLineEnd(origin, originExposeModuleStatementStart);
+        // 模块赋值语句的上一行
+        const exposeLastLine = utils.findNewLineStart(origin, exposeStart - 1);
+
+        // 替换代码
+        replacement.replace(
+            exposeLastLine,
+            exposeEnd,
+            utils.normalizeCode(this.generatedCode(requires)),
+        );
+
+        return new ConcatSource(replacement);
     }
 
     /** 获取 chunk 列表中的 js 文件 */

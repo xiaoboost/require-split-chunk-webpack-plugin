@@ -11,10 +11,10 @@ const baseConfig = {
         entry1: resolveRoot('example/entry1.js'),
         entry2: resolveRoot('example/entry2.js'),
     },
-    target: 'electron-main',
+    target: 'node',
     output: {
         path: resolveRoot('example'),
-        publicPath: resolveRoot('example/output'),
+        publicPath: resolveRoot('example'),
         filename: 'output/[name].js',
         chunkFilename: 'output/[name].js',
         // libraryTarget: 'commonjs2',
