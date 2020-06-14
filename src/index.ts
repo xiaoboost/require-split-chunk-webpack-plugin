@@ -38,7 +38,7 @@ export class RequireSplitChunkPlugin {
             '        }\n\n' +
             '        for (var key in chunkModule) {\n' +
             '            if (chunkModule.hasOwnProperty(key)) {\n' +
-            '                merged[key] = chunkModule[key];' +
+            '                merged[key] = chunkModule[key];\n' +
             '            }\n' +
             '        }\n' +
             '    }\n\n' +

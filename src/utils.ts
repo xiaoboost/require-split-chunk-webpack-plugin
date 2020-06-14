@@ -34,8 +34,11 @@ const codeLeftComment = '/******/    ';
 
 /** 装饰代码 */
 export function normalizeCode(code: string) {
-    return code
-        .split(/[\n\r]/)
+    const newCode = code
+        .trim()
+        .split(/[\n\r\f]/)
         .map((line) => `${codeLeftComment}${line}`)
         .join('\n');
+
+    return `\n${newCode}\n`;
 }

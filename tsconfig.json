@@ -3,6 +3,7 @@
         "outDir": "./dist",
         "sourceMap": false,
         "strict": true,
+        "declaration": true,
         "moduleResolution": "node",
         "target": "es2018",
         "module": "CommonJS",
