@@ -1,15 +1,24 @@
 {
   "name": "require-split-chunk-webpack-plugin",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "require splited chunk code in entry file",
   "main": "./dist/index.js",
-  "types": "./dist/index.js",
+  "types": "./dist",
   "scripts": {
     "watch": "tsc -w -p .",
     "compile": "tsc --declaration -p ."
   },
-  "files": ["dist", "package.json", "README.md"],
-  "keywords": ["nodejs", "webpack", "webpack-plugin", "require"],
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
+  "keywords": [
+    "nodejs",
+    "webpack",
+    "webpack-plugin",
+    "require"
+  ],
   "author": "xiaoboost",
   "license": "MIT",
   "repository": {
@@ -18,6 +27,9 @@
   },
   "bugs": {
     "url": "https://github.com/xiaoboost/require-split-chunk-webpack-plugin/issues"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
   },
   "devDependencies": {
     "@types/node": "^14.0.6",
