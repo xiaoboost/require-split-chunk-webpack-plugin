@@ -37,7 +37,7 @@
     "@types/webpack": "^4.41.14",
     "is-number": "^7.0.0",
     "is-string": "^1.0.5",
-    "rmrf": "^2.0.2",
+    "rimraf": "^3.0.2",
     "typescript": "^3.9.3",
     "webpack": "^4.43.0"
   }
