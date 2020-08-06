@@ -1,6 +1,6 @@
 {
   "name": "require-split-chunk-webpack-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "require splited chunk code in entry file",
   "main": "./dist/index.js",
   "types": "./dist",
@@ -31,7 +31,6 @@
     "url": "https://github.com/xiaoboost/require-split-chunk-webpack-plugin/issues"
   },
   "dependencies": {
-    "npm-check-updates": "^7.0.3",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
