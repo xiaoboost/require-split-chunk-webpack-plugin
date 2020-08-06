@@ -15,7 +15,7 @@ const baseConfig = {
     target: 'node',
     output: {
         path: resolveRoot('example'),
-        publicPath: resolveRoot('example'),
+        publicPath: '../',
         filename: 'output/[name].js',
         chunkFilename: 'output/[name].js',
         // libraryTarget: 'commonjs2',
@@ -28,7 +28,7 @@ const baseConfig = {
             name: true,
             cacheGroups: {
                 commons: {
-                    test: /[\\/]node_modules[\\/]/,
+                    test: /[\\/]common[\\/]/,
                     name: 'common',
                     chunks: 'all',
                 },

@@ -54,7 +54,7 @@ export class RequireSplitChunkPlugin {
 
     /** 更新入口文件 */
     requireChunkInEntry(cached: CachedSource | ConcatSource, requires: string[]): ConcatSource {
-        const origin = cached.source();
+        const origin = cached.source().toString();
         const replacement = new ReplaceSource(cached);
         const originExposeModuleStatementStart = origin.indexOf(replaceStatement);
 
