@@ -7,7 +7,8 @@
   "scripts": {
     "watch": "tsc --sourceMap -w -p .",
     "compile": "rimraf ./dist && tsc -p .",
-    "prepare": "npm run compile"
+    "prepare": "npm run compile",
+    "publish": "npm publish --registry=https://registry.npmjs.org/"
   },
   "files": [
     "dist",
