@@ -25,7 +25,6 @@ const baseConfig = {
             maxInitialRequests: Infinity,
             minSize: 0,
             minChunks: 1,
-            name: true,
             cacheGroups: {
                 commons: {
                     test: /[\\/]common[\\/]/,
@@ -36,7 +35,7 @@ const baseConfig = {
         },
     },
     plugins: [
-        new Webpack.HashedModuleIdsPlugin({
+        new Webpack.ids.HashedModuleIdsPlugin({
             hashFunction: 'sha256',
             hashDigest: 'hex',
             hashDigestLength: 6,
