@@ -1,6 +1,5 @@
 dependencies:
   tslib: 2.0.3
-  webpack-sources: 2.2.0
 devDependencies:
   '@types/node': 14.14.16
   '@types/webpack': 4.41.25
@@ -624,6 +623,7 @@ packages:
       integrity: sha1-eIbshIBJpGJGepfT2Rjrsqr5NPQ=
       tarball: serialize-javascript/download/serialize-javascript-5.0.1.tgz
   /source-list-map/2.0.1:
+    dev: true
     resolution:
       integrity: sha1-OZO9hzv8SEecyp6jpUeDXHwVSzQ=
       tarball: source-list-map/download/source-list-map-2.0.1.tgz
@@ -636,6 +636,7 @@ packages:
       integrity: sha1-qYti+G3K9PZzmWSMCFKRq56P7WE=
       tarball: source-map-support/download/source-map-support-0.5.19.tgz
   /source-map/0.6.1:
+    dev: true
     engines:
       node: '>=0.10.0'
     resolution:
@@ -732,6 +733,7 @@ packages:
     dependencies:
       source-list-map: 2.0.1
       source-map: 0.6.1
+    dev: true
     engines:
       node: '>=10.13.0'
     resolution:
@@ -794,4 +796,3 @@ specifiers:
   tslib: ^2.0.3
   typescript: ^4.1.3
   webpack: ^5.11.0
-  webpack-sources: ^2.2.0
