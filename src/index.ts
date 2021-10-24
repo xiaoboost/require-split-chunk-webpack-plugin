@@ -99,11 +99,21 @@ export class RequireSplitChunkPlugin {
 
     /** 完成编译后的同步钩子 */
     afterCompilation(compilation: Webpack.Compilation) {
-        // 优化资源时触发
-        compilation.hooks.optimizeChunkAssets.tap(this.name, (chunks) => {
-            const assets = compilation.assets;
-            const entryFiles = this.getScriptFile(Array.from(chunks).filter((chunk) => chunk.hasEntryModule()));
-            const splitFiles = this.getScriptFile(Array.from(chunks).filter((chunk) => !chunk.hasEntryModule()));
+        const entryChunks: Webpack.Chunk[] = [];
+        const splitChunks: Webpack.Chunk[] = [];
+
+        compilation.hooks.chunkAsset.tap(this.name, (chunk) => {
+            if (compilation.chunkGraph.hasChunkEntryDependentChunks(chunk)) {
+                entryChunks.push(chunk);
+            }
+            else {
+                splitChunks.push(chunk);
+            }
+        });
+
+        compilation.hooks.processAssets.tap(this.name, (assets) => {
+            const entryFiles = this.getScriptFile(entryChunks);
+            const splitFiles = this.getScriptFile(splitChunks);
 
             entryFiles.forEach((file) => {
                 assets[file] = this.requireChunkInEntry(assets[file], splitFiles);

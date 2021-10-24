@@ -5,7 +5,7 @@ function findSomethingStart(isSomething: (code: string) => boolean) {
                 break;
             }
         }
-    
+
         return offset;
     };
 }
@@ -17,7 +17,7 @@ function findSomethingEnd(isSomething: (code: string) => boolean) {
                 break;
             }
         }
-    
+
         return offset;
     };
 }
@@ -30,7 +30,7 @@ export const findNewLineStart = findSomethingStart(isNewLine);
 export const findNewLineEnd = findSomethingEnd(isNewLine);
 
 /** webpack 启动部分左侧装饰性注释 */
-const codeLeftComment = '/******/    ';
+const codeLeftComment = '/******/  ';
 
 /** 装饰代码 */
 export function normalizeCode(code: string) {
